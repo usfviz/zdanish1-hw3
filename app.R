@@ -28,7 +28,7 @@ ui <- fluidPage(
                   step=1, value = 1, animate = animationOptions(interval=1000), sep="", width = 550)),
       tabPanel("Small Multiples",plotlyOutput("P2", width = "100%") ,
                sidebarPanel(
-                 selectInput('var', 'Y Variable', c('Likes','Comments','Shares')))),
+                 selectInput('var', 'Reaction Type', c('Likes','Comments','Shares')))),
       tabPanel("Parallel Coordinates",plotlyOutput("P3", width = "100%"),
                sidebarPanel(
                  selectInput('yvar', 'Month', c('All','Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'))))
@@ -58,7 +58,7 @@ server <- function(input, output) {
     plt <- ggplot(type_agg, aes(y=y_ax(), x=Post.Weekday))
     plt <- plt + geom_bar(stat = 'identity', aes(fill = Post.Weekday))
     plt <- plt + facet_wrap(~Post.Month) 
-    plt <- plt + ggtitle("Small Multiples in R")
+    plt <- plt + ggtitle("Small Multiples")
     plt <- plt + ylab('') + theme_bw() + theme(legend.title = element_blank(), axis.title.x=element_text(vjust=2.1, size = 12)) + xlab('\n \n \n Day of the Week')
     plt <- plt + theme(plot.title = element_text(family="Trebuchet MS", face="bold", size=20, hjust=0, color='#555555')) 
     # plt <- plt + theme(axis.text.x = element_text(angle=90)) 
